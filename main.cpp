@@ -1,41 +1,44 @@
 #include "include/BigInt.h"
+#include "utils/utils.h" 
 #include <iostream>
-#include <fstream>
 #include <string>
+#include <stdexcept>
+#include <utility> 
 
 int main(int argc, char* argv[]) {
-    if (argc < 3) {
-        std::cout << "Usage: " << argv[0] << " <input_file> <output_file>\n";
-        return -1;
+    if (argc != 3) {
+        std::cerr << "Usage: " << argv[0] << " <input_file> <output_file>\n";
+        return 1;
     }
 
+    const std::string inputPath = argv[1];
+    const std::string outputPath = argv[2];
+
     try {
-        std::ifstream fin(argv[1]);
-        if (!fin) {
-            std::cerr << "Error: Cannot open file " << argv[1] << std::endl;
-            return -1;
-        }
+        std::pair<std::string, std::string> numbers = readNumbersFromFile(inputPath);
+        const std::string& numString1 = numbers.first;
+        const std::string& numString2 = numbers.second;
 
-        std::string num1, num2;
-        fin >> num1 >> num2;
-        fin.close();
+        std::cout << "Starting multiplication...\n";
+        
+        const BigInt numberA(numString1);
+        const BigInt numberB(numString2);
 
-        if (num1.empty() || num2.empty()) {
-            std::cerr << "Error: Input file must contain two numbers" << std::endl;
-            return -1;
-        }
+        const BigInt resultC = numberA.multiply(numberB);
+        
+        const std::string resultString = resultC.toString();
 
-        BigInt a(num1);
-        BigInt b(num2);
+        writeResultToFile(outputPath, resultString);
 
-        BigInt c = a.multiply(b);
+        std::cout << "Multiplication successful. Result (length " << resultString.length() 
+                  << ") written to " << outputPath << std::endl;
 
-        c.toFile(argv[2]);
-
-        std::cout << "Multiplication successful. Result written to " << argv[2] << std::endl;
     } catch (const std::exception &e) {
         std::cerr << "Error: " << e.what() << std::endl;
-        return -1;
+        return 1;
+    } catch (...) {
+        std::cerr << "An unknown error occurred." << std::endl;
+        return 1;
     }
 
     return 0;
