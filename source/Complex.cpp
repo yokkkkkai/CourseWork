@@ -1,40 +1,42 @@
 #include "/home/andreyk/course_work/include/Complex.h"
 #include <cmath>
 
-Complex::Complex(double real, double imag) : re(real), im(imag) {}
+Complex::Complex(double realPart, double imaginaryPart) : realPart(realPart), imaginaryPart(imaginaryPart) {}
 
-Complex Complex::operator+(const Complex &other) const 
+Complex Complex::operator+(const Complex &summand) const 
 {
-    return Complex(re + other.re, im + other.im);
+    return Complex(realPart + summand.realPart, imaginaryPart + summand.imaginaryPart);
 }
 
-Complex Complex::operator-(const Complex &other) const 
+Complex Complex::operator-(const Complex &subtrahend) const 
 {
-    return Complex(re - other.re, im - other.im);
+    return Complex(realPart - subtrahend.realPart, imaginaryPart - subtrahend.imaginaryPart);
 }
 
-Complex Complex::operator*(const Complex &other) const 
+Complex Complex::operator*(const Complex &factor) const 
 {
-    return Complex(re * other.re - im * other.im, re * other.im + im * other.re);
+    return Complex(realPart * factor.realPart - imaginaryPart * factor.imaginaryPart, 
+                   realPart * factor.imaginaryPart + imaginaryPart * factor.realPart);
 }
 
-Complex& Complex::operator*=(const Complex &other) 
+Complex& Complex::operator*=(const Complex &factor) 
 {
-    double r = re * other.re - im * other.im;
-    double i = re * other.im + im * other.re;
-    re = r;
-    im = i;
+    double newRealPart = realPart * factor.realPart - imaginaryPart * factor.imaginaryPart;
+    double newImaginaryPart = realPart * factor.imaginaryPart + imaginaryPart * factor.realPart;
+    
+    realPart = newRealPart;
+    imaginaryPart = newImaginaryPart;
     return *this;
 }
 
-Complex Complex::operator/(double val) const 
+Complex Complex::operator/(double divisor) const 
 {
-    return Complex(re / val, im / val);
+    return Complex(realPart / divisor, imaginaryPart / divisor);
 }
 
-Complex& Complex::operator/=(double val) 
+Complex& Complex::operator/=(double divisor) 
 {
-    re /= val;
-    im /= val;
+    realPart /= divisor;
+    imaginaryPart /= divisor;
     return *this;
 }

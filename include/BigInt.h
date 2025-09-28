@@ -6,22 +6,22 @@
 #include <cmath>
 #include "Complex.h"
 
-typedef std::vector<int> IntVector;
-typedef std::vector<Complex> ComplexVector;
+typedef std::vector<int> IntVector; 
+typedef std::vector<Complex> ComplexVector; 
 
 class BigInt 
 {
 private:
-    IntVector digits;
-    const double PI = acos(-1);
+    IntVector digits_; 
+    const double PI_ = acos(-1); 
 
-    void fft(ComplexVector &a, bool invert) const;
-    ComplexVector prepareArray(const IntVector &arr, int n) const;
-    IntVector normalize(const ComplexVector &arr) const;
+    void fft(ComplexVector &complexArray, bool invert) const;
+    ComplexVector prepareArray(const IntVector &digitArray, int requiredSize) const;
+    IntVector normalize(const ComplexVector &complexResult) const;
 
 public:
-    BigInt(const std::string &num);
-    BigInt(const IntVector &d);
+    BigInt(const std::string &numString); 
+    BigInt(const IntVector &digitArray); 
 
     BigInt multiply(const BigInt &other) const;
     std::string toString() const;
