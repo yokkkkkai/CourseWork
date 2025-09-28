@@ -126,28 +126,3 @@ std::string BigInt::toString() const
 
     return s;
 }
-
-BigInt BigInt::fromFile(const std::string &filename) 
-{
-    std::ifstream fin(filename);
-    if (!fin) 
-    {
-        throw std::runtime_error("Не удалось открыть файл: " + filename);
-    }
-    std::string s;
-    fin >> s;
-    fin.close();
-    return BigInt(s);
-}
-
-void BigInt::toFile(const std::string &filename) const 
-{
-    std::ofstream fout(filename);
-    if (!fout) 
-    {
-        throw std::runtime_error("Не удалось открыть файл: " + filename);
-    }
-    
-    fout << toString();
-    fout.close();
-}

@@ -25,9 +25,6 @@ public:
 
     BigInt multiply(const BigInt &other) const;
     std::string toString() const;
-
-    static BigInt fromFile(const std::string &filename);
-    void toFile(const std::string &filename) const;
 };
 
 #endif // BIGINT_H
