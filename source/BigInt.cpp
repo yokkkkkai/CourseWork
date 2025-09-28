@@ -1,4 +1,4 @@
-#include "/home/andreyk/course_work/include/BigInt.h"
+#include "BigInt.h"
 #include <cmath>
 #include <stdexcept>
 #include <algorithm>

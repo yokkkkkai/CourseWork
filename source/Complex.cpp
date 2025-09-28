@@ -1,4 +1,4 @@
-#include "/home/andreyk/course_work/include/Complex.h"
+#include "Complex.h"
 #include <cmath>
 
 Complex::Complex(double realPart, double imaginaryPart) : realPart(realPart), imaginaryPart(imaginaryPart) {}
