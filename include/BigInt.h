@@ -23,7 +23,7 @@ public:
     BigInt(const std::string &numString); 
     BigInt(const IntVector &digitArray); 
 
-    BigInt multiply(const BigInt &other) const;
+    BigInt multiplyFFT(const BigInt &other) const;
     std::string toString() const;
 };
 

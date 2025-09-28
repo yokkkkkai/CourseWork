@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) {
         const BigInt numberA(numString1);
         const BigInt numberB(numString2);
 
-        const BigInt resultC = numberA.multiply(numberB);
+        const BigInt resultC = numberA.multiplyFFT(numberB);
         
         const std::string resultString = resultC.toString();
 

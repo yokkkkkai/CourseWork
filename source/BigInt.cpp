@@ -96,7 +96,7 @@ IntVector BigInt::normalize(const ComplexVector &complexResult) const
     return resultDigits;
 }
 
-BigInt BigInt::multiply(const BigInt &other) const 
+BigInt BigInt::multiplyFFT(const BigInt &other) const 
 {
     int requiredSize = 1;
     int minimumSize = digits_.size() + other.digits_.size();
